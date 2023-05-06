@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { Section } from '../Section/Section.js';
 import { Notification } from '../Notifications/Notifications.js';
-import { Value, StatsItem, StatsList } from './Statistics.jsx';
+import { Value, StatsItem, StatsList } from './Statistics.styled.jsx';
 
 export function Statistics({ good, bad, neutral, total, positivePercentage }) {
   return (

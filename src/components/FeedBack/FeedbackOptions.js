@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { Section } from '../Section/Section';
-import { Button, ButtonsList } from './FeedbackOptions.jsx';
+import { Button, ButtonsList } from './FeedbackOptions.styled';
 
 export function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
