@@ -1,29 +1,16 @@
 import { Component } from 'react';
-import {PropTypes} from 'prop-types'
+// import {PropTypes} from 'prop-types'
 
-import { StatisticsTitle, FeedBackTitle } from './SectionTitles/SectionTitles'
-import { Stats, StatsProc } from './Statistics/Statistics';
 
-import {Section, Container} from 'constatnts'
-import { Button, ButtonsList } from './FeedBack/FeedbackBtns.jsx';
+import { Statistics } from './Statistics/Statistics';
+
+import {FeedBackBtns } from './FeedBack/FeedbackOptions';
 
 export class App extends Component {
-  static defaultProps = {
-    initialValueGood: 0,
-    initialValueBad: 0,
-    initialValueNeutral: 0,
-  };
-
-  static propTypes = {
-    initialValueGood: PropTypes.number,
-    initialValueBad: PropTypes.number,
-    initialValueNeutral: PropTypes.number,
-  };
-
   state = {
-    good: this.props.initialValueGood,
-    neutral: this.props.initialValueNeutral,
-    bad: this.props.initialValueBad,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
 
   incrementValueGood = () => {
@@ -44,51 +31,38 @@ export class App extends Component {
     }));
   };
 
-  getTotal = () => {
+  countTotalFeedback = () => {
     return Object.values(this.state).reduce((acc, val) => acc + val, 0);
   };
 
-  getPositivePercentage = () => {
-    const total = this.getTotal();
+  countPositiveFeedbackPercentage = () => {
+    const total = this.countTotalFeedback();
     if (total === 0) {
       return 0;
     }
     const positive = this.state.good;
-    return Math.round((positive / total) * 100) + '%';
+    return Math.round((positive / total) * 100);
   };
 
   render() {
-    const total = this.getTotal();
-    const positivePercentage = this.getPositivePercentage();
+    const { good, bad, neutral } = this.state;
+    
+    const total = this.countTotalFeedback();
+    const positivePercentage = this.countPositiveFeedbackPercentage();
 
     return (
       <>
-        <Section>
-          <Container>
-            <FeedBackTitle />
-            <ButtonsList>
-              <li>
-                <Button onClick={this.incrementValueGood}>Good</Button>
-              </li>
-              <li>
-                <Button onClick={this.incrementValueNeutral}>Neutral</Button>
-              </li>
-              <li>
-                <Button onClick={this.incrementValueBad}>Bad</Button>
-              </li>
-            </ButtonsList>
-          </Container>
-        </Section>
-
-        <Section>
-          <Container>
-            <StatisticsTitle />
-            <Stats Good={this.state.good} Bad={this.state.bad} Neutral={this.state.neutral} />
-            <StatsProc PositivePercentage={positivePercentage} />
-            <p>Total: {total || 0}</p>
-            <p>Posititve Feedback: {positivePercentage || 0}</p>
-          </Container>
-        </Section>
+        <FeedBackBtns
+          onClickBtnGood={this.incrementValueGood}
+          onClickBtnNeutral={this.incrementValueNeutral}
+          onClickBtnBad={this.incrementValueBad} />
+        
+        <Statistics
+          good={good}
+          bad={bad}
+          neutral={neutral}
+          total={total}
+          positivePercentage={positivePercentage} />  
       </>
     );
   }
