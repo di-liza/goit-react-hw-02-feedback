@@ -9,15 +9,14 @@ export function FeedbackOptions({ options, onLeaveFeedback }) {
       <Section title="Please leave feedback">
         <ButtonsList>
           {options.map(option => (
-            <li key={option}>
-              <Button
-                onClick={() => {
-                  onLeaveFeedback(option);
-                }}
-              >
-                {option}
-              </Button>
-            </li>
+            <Button
+              key={option}
+              onClick={() => {
+                onLeaveFeedback(option);
+              }}
+            >
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </Button>
           ))}
         </ButtonsList>
       </Section>
