@@ -4,7 +4,7 @@ import { Component } from 'react';
 
 import { Statistics } from './Statistics/Statistics';
 
-import {FeedBackBtns } from './FeedBack/FeedbackOptions';
+import {FeedbackOptions } from './FeedBack/FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -13,6 +13,22 @@ export class App extends Component {
     bad: 0,
   };
 
+  handleLeaveFeedback = (option) => {
+    switch (option) {
+      case 'good':
+        this.incrementValueGood();
+        break;
+      case 'bad':
+        this.incrementValueBad();
+        break;
+      case 'neutral':
+        this.incrementValueNeutral();
+        break;
+      default:
+        console.log('Unknown option');
+    }
+  };
+  
   incrementValueGood = () => {
     this.setState(prevState => ({
       good: prevState.good + 1,
@@ -30,7 +46,7 @@ export class App extends Component {
       neutral: prevState.neutral + 1,
     }));
   };
-
+  
   countTotalFeedback = () => {
     return Object.values(this.state).reduce((acc, val) => acc + val, 0);
   };
@@ -52,10 +68,7 @@ export class App extends Component {
 
     return (
       <>
-        <FeedBackBtns
-          onClickBtnGood={this.incrementValueGood}
-          onClickBtnNeutral={this.incrementValueNeutral}
-          onClickBtnBad={this.incrementValueBad} />
+        <FeedbackOptions options={Object.keys(this.state)}  onLeaveFeedback={this.handleLeaveFeedback}/>
         
         <Statistics
           good={good}
