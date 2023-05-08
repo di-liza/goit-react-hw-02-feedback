@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
 
 import { Notification } from '../Notifications/Notifications.js';
-import { Value, StatsItem, StatsList } from './Statistics.styled.jsx';
+import {
+  Value,
+  StatsItem,
+  StatsList,
+  Num,
+  CountList,
+  CountItem,
+} from './Statistics.styled.jsx';
 
 export function Statistics({ good, bad, neutral, total, positivePercentage }) {
   const renderStats = () => {
@@ -9,24 +16,27 @@ export function Statistics({ good, bad, neutral, total, positivePercentage }) {
       <>
         <StatsList>
           <StatsItem>
-            <Value>Good: {good}</Value>
+            <Value>Good:</Value>
+            <Num>{good}</Num>
           </StatsItem>
           <StatsItem>
-            <Value>Neutral: {neutral}</Value>
+            <Value>Neutral:</Value>
+            <Num>{neutral}</Num>
           </StatsItem>
           <StatsItem>
-            <Value>Bad: {bad}</Value>
+            <Value>Bad:</Value>
+            <Num>{bad}</Num>
           </StatsItem>
         </StatsList>
 
-        <StatsList>
-          <StatsItem>
+        <CountList>
+          <CountItem>
             <Value>Total: {total}</Value>
-          </StatsItem>
-          <StatsItem>
+          </CountItem>
+          <CountItem>
             <Value>Posititve Feedback: {positivePercentage || 0}%</Value>
-          </StatsItem>
-        </StatsList>
+          </CountItem>
+        </CountList>
       </>
     );
   };
