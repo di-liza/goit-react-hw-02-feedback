@@ -17,19 +17,19 @@ export const Button = styled.button`
   &:hover {
     color: white;
   }
-  :nth-child(1) {
+  :nth-of-type(1) {
     background-color: #2de109;
     &:hover {
       background-color: #00ff15;
     }
   }
-  :nth-child(2) {
+  :nth-of-type(2) {
     background-color: #09a4e1;
     &:hover {
       background-color: #208fff;
     }
   }
-  :nth-child(3) {
+  :nth-of-type(3) {
     background-color: #e10938;
     &:hover {
       background-color: #ff2550;

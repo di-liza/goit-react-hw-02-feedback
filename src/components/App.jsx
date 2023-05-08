@@ -14,35 +14,21 @@ export class App extends Component {
   handleLeaveFeedback = option => {
     switch (option) {
       case 'good':
-        this.incrementValueGood();
+        this.incrementValue('good');
         break;
       case 'bad':
-        this.incrementValueBad();
+        this.incrementValue('bad');
         break;
       case 'neutral':
-        this.incrementValueNeutral();
+        this.incrementValue('neutral');
         break;
       default:
         console.log('Unknown option');
     }
   };
 
-  incrementValueGood = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-
-  incrementValueBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
-  };
-
-  incrementValueNeutral = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
+  incrementValue = optionName => {
+    this.setState(prevState => ({ [optionName]: prevState[optionName] + 1 }));
   };
 
   countTotalFeedback = () => {
