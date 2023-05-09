@@ -11,24 +11,10 @@ export class App extends Component {
     bad: 0,
   };
 
-  handleLeaveFeedback = option => {
-    switch (option) {
-      case 'good':
-        this.incrementValue('good');
-        break;
-      case 'bad':
-        this.incrementValue('bad');
-        break;
-      case 'neutral':
-        this.incrementValue('neutral');
-        break;
-      default:
-        console.log('Unknown option');
-    }
-  };
-
-  incrementValue = optionName => {
-    this.setState(prevState => ({ [optionName]: prevState[optionName] + 1 }));
+  incrementOptionValue = option => {
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }));
   };
 
   countTotalFeedback = () => {
@@ -55,7 +41,7 @@ export class App extends Component {
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={Object.keys(this.state)}
-            onLeaveFeedback={this.handleLeaveFeedback}
+            onLeaveFeedback={this.incrementOptionValue}
           />
         </Section>
 
