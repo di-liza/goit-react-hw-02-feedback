@@ -11,7 +11,7 @@ export class App extends Component {
     bad: 0,
   };
 
-  incrementOptionValue = option => {
+  incrementValue = option => {
     this.setState(prevState => ({
       [option]: prevState[option] + 1,
     }));
@@ -41,7 +41,7 @@ export class App extends Component {
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={Object.keys(this.state)}
-            onLeaveFeedback={this.incrementOptionValue}
+            onLeaveFeedback={this.incrementValue}
           />
         </Section>
 
