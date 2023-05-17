@@ -23,7 +23,6 @@ export const Value = styled.p`
   color: black;
 `;
 export const Num = styled.span`
-  /* display: block; */
   color: black;
   font-size: 15px;
 `;
